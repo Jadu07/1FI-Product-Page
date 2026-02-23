@@ -1,10 +1,15 @@
-const express = require('express');
-const app = express();
+require('dotenv').config()
+const express = require('express')
+const connectDB = require('./config/db')
+const productRoutes = require('./routes/productRoutes')
 
-app.get('/', (req, res) => {
-    res.json({ message: 'Hello' });
-});
+const app = express()
+app.use(express.json())
+
+connectDB()
+
+app.use('/api/products', productRoutes)
 
 app.listen(3000, () => {
-    console.log('Server running at http://localhost:3000');
-});
+    console.log('Server running at http://localhost:3000')
+})
