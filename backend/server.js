@@ -12,7 +12,6 @@ connectDB()
 
 app.use('/api/products', productRoutes)
 
-// Export for Vercel serverless — only listen locally
 if (process.env.NODE_ENV !== 'production') {
     app.listen(3000, () => console.log('Server running at http://localhost:3000'))
 }

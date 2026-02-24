@@ -26,3 +26,6 @@ router.get('/variants/:variantSlug', async (req, res) => {
 })
 
 module.exports = router
+
+
+// demo http://localhost:3000/api/products/variants/apple-iphone-17-pro-desert-titanium-512-gb-smart-phones
