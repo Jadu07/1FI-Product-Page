@@ -1,6 +1,6 @@
 import { Search, Briefcase, CreditCard, User } from 'lucide-react'
 
-const categories = ['Mobiles', 'Electronics', 'TV & Appliances', 'Kitchen & Home', 'Health & Wellness', 'Fashion', 'Baby & Kids', 'Sports & Fitness']
+const categories = ["All", 'Mobiles', 'Electronics', 'TV & Appliances', 'Kitchen & Home', 'Health & Wellness', 'Fashion', 'Baby & Kids', 'Sports & Fitness']
 
 const Navbar = () => (
     <header className="bg-white border-b border-gray-200 shadow-sm">
