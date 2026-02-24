@@ -6,6 +6,11 @@ This is a full-stack e-commerce product page application built using **React (Vi
 - **Frontend App:** https://onefi-frontend.vercel.app
 - **Backend API:** https://1-fi-ecommerce-backend.vercel.app
 
+
+https://github.com/user-attachments/assets/99ede597-c3c5-4899-8c51-1b98bb27c07f
+
+
+
 ---
 
 ## 🛠 Tech Stack Used
