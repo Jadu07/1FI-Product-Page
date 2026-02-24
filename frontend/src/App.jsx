@@ -1,11 +1,18 @@
-import './App.css'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import Navbar from './components/Navbar'
+import ProductListPage from './pages/ProductListPage'
+import ProductPage from './pages/ProductPage'
 
 function App() {
-
   return (
-    <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md">
-      Hello
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/products" element={<ProductListPage />} />
+        <Route path="/products/:variantSlug" element={<ProductPage />} />
+        <Route path="/" element={<Navigate to="/products" replace />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
