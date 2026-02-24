@@ -11,21 +11,12 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.get('/:slug', async (req,res) => {
-    try {
-        const product = await Product.findOne({ slug: req.params.slug })
-        if (!product) return res.status(404).json({ error: 'Product not found' })
-        res.json(product)
-    } catch (err) {
-        res.status(500).json({error:err.message })
-    }
-})
 
-router.get('/variants/:variantSlug', async(req,res) => {
+router.get('/variants/:variantSlug', async (req, res) => {
     try {
-        const product = await Product.findOne({'variants.variantSlug':req.params.variantSlug })
-        if (!product) return res.status(404).json({error:'Variant not found' })
-        const activeVariant =product.variants.find(
+        const product = await Product.findOne({ 'variants.variantSlug': req.params.variantSlug })
+        if (!product) return res.status(404).json({ error: 'Variant not found' })
+        const activeVariant = product.variants.find(
             v => v.variantSlug === req.params.variantSlug
         )
         res.json({ product, activeVariant })
