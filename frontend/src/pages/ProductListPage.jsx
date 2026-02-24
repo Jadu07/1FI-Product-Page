@@ -4,7 +4,6 @@ import { getAllProducts } from '../api/productApi'
 import ProductCard from '../components/ProductCard'
 import { Loader2 } from 'lucide-react'
 
-// Map navbar category labels to DB category field values
 const CATEGORY_MAP = {'Smart Phones': 'Smart Phones', 'Electronics': 'Electronics', 'TV & Appliances': 'TV & Appliances', 'Kitchen & Home': 'Kitchen & Home', 'Health & Wellness': 'Health & Wellness', 'Fashion': 'Fashion', 'Baby & Kids': 'Baby & Kids', 'Sports & Fitness': 'Sports & Fitness',}
 
 const ProductListPage = () => {
@@ -12,7 +11,7 @@ const ProductListPage = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [params] = useSearchParams()
-    const selectedCat = params.get('category') // e.g. "Mobiles"
+    const selectedCat = params.get('category')
 
     useEffect(() => {
         getAllProducts().then(setProducts).catch(e => setError(e.message)).finally(() => setLoading(false))
@@ -21,7 +20,6 @@ const ProductListPage = () => {
     if (loading) return <div className="flex items-center justify-center min-h-[60vh] text-emerald-500"><Loader2 size={36} className="animate-spin" /></div>
     if (error) return <div className="flex items-center justify-center min-h-[60vh] text-red-500 text-sm">⚠️ {error}</div>
 
-    // Filter by category if one is selected
     const dbCat = selectedCat ? CATEGORY_MAP[selectedCat] : null
     const filtered = dbCat ? products.filter(p => p.category === dbCat) : products
     const heading = selectedCat ?? 'All Products'
