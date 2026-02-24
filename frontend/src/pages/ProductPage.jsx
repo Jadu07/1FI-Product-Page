@@ -7,7 +7,6 @@ import PriceSection from '../components/PriceSection'
 import VariantSelector from '../components/VariantSelector'
 import EmiSection from '../components/EmiSection'
 
-// Maps DB category values → navbar ?category= param
 const DB_TO_NAV = {
     'Smart Phones': 'Smart Phones',
     'Electronics': 'Electronics',
@@ -65,7 +64,7 @@ const ProductPage = () => {
                 <div className="flex-1 flex flex-col gap-4 min-w-0">
                     <PriceSection product={product} activeVariant={activeVariant} discount={discount} />
                     <VariantSelector storages={storages} colors={colors} activeVariant={activeVariant} onSelect={selectVariant} />
-                    <EmiSection emiPlans={product.emiPlans ?? []} onPlanChange={setSelectedPlan} />
+                    <EmiSection emiPlans={activeVariant.emiPlans ?? []} onPlanChange={setSelectedPlan} />
 
                     <button className="w-full bg-gray-900 hover:bg-gray-700 active:scale-[0.99] text-white font-bold py-4 rounded-2xl transition-all duration-200 text-sm tracking-wide shadow-lg shadow-gray-900/10">
                         {selectedPlan ? `Buy on ${selectedPlan.tenureMonths} Months EMI · ${selectedPlan.provider}` : `Buy on EMI`}

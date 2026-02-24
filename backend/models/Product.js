@@ -1,18 +1,5 @@
 const mongoose = require('mongoose')
 
-const VariantSchema = new mongoose.Schema({
-    variantSlug: { type: String, required: true },
-    color: { type: String },
-    ram: { type: String },
-    storage: { type: String },
-    finish: { type: String },
-    mrp: { type: Number, required: true },
-    price: { type: Number, required: true },
-    images: [{ type: String }],
-    stock: { type: Number, default: 0 },
-    isDefault: { type: Boolean, default: false },
-})
-
 const EmiPlanSchema = new mongoose.Schema({
     provider: { type: String, required: true },
     tenureMonths: { type: Number, required: true },
@@ -24,6 +11,20 @@ const EmiPlanSchema = new mongoose.Schema({
     isRecommended: { type: Boolean, default: false },
 })
 
+const VariantSchema = new mongoose.Schema({
+    variantSlug: { type: String, required: true },
+    color: { type: String },
+    ram: { type: String },
+    storage: { type: String },
+    finish: { type: String },
+    mrp: { type: Number, required: true },
+    price: { type: Number, required: true },
+    images: [{ type: String }],
+    stock: { type: Number, default: 0 },
+    isDefault: { type: Boolean, default: false },
+    emiPlans: [EmiPlanSchema], 
+})
+
 const ProductSchema = new mongoose.Schema({
     name: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
@@ -33,7 +34,6 @@ const ProductSchema = new mongoose.Schema({
     images: [{ type: String }],
 
     variants: [VariantSchema],
-    emiPlans: [EmiPlanSchema],
 }, { timestamps: true })
 
 module.exports = mongoose.model('Product', ProductSchema)
