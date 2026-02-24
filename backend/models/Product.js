@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const VariantSchema = new mongoose.Schema({
+    variantSlug: { type: String, required: true },
     color: { type: String },
     ram: { type: String },
     storage: { type: String },
