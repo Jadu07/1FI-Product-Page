@@ -7,6 +7,18 @@ import PriceSection from '../components/PriceSection'
 import VariantSelector from '../components/VariantSelector'
 import EmiSection from '../components/EmiSection'
 
+// Maps DB category values → navbar ?category= param
+const DB_TO_NAV = {
+    'Smart Phones': 'Smart Phones',
+    'Electronics': 'Electronics',
+    'TV & Appliances': 'TV & Appliances',
+    'Kitchen & Home': 'Kitchen & Home',
+    'Health & Wellness': 'Health & Wellness',
+    'Fashion': 'Fashion',
+    'Baby & Kids': 'Baby & Kids',
+    'Sports & Fitness': 'Sports & Fitness',
+}
+
 const ProductPage = () => {
     const { variantSlug } = useParams()
     const navigate = useNavigate()
@@ -32,11 +44,19 @@ const ProductPage = () => {
         <main className="bg-gray-50 min-h-screen">
             {/* Breadcrumb */}
             <nav className="bg-white border-b border-gray-100 px-8 py-3 text-xs text-gray-400 flex items-center gap-1.5">
-                <Link to="/products" className="hover:text-emerald-600 transition-colors">Smart Phones</Link>
-                <ChevronRight size={12} />
-                <span>{product.brand}</span>
-                <ChevronRight size={12} />
-                <span className="text-gray-700 font-medium">{product.name}</span>
+                {(() => {
+                    const navCat = DB_TO_NAV[product.category]
+                    const catUrl = navCat ? `/products?category=${encodeURIComponent(navCat)}` : '/products'
+                    return (
+                        <>
+                            <Link to={catUrl} className="hover:text-emerald-600 transition-colors">{product.category}</Link>
+                            <ChevronRight size={12} />
+                            <span>{product.brand}</span>
+                            <ChevronRight size={12} />
+                            <span className="text-gray-700 font-medium">{product.name}</span>
+                        </>
+                    )
+                })()}
             </nav>
 
             <div className="max-w-5xl mx-auto px-6 py-8 flex flex-col lg:flex-row gap-8">
